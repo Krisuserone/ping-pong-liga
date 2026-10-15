@@ -13,10 +13,13 @@
 
 html {
   -webkit-tap-highlight-color: transparent;
+  /* Navy shows in the strip revealed when a phone page is pulled down to refresh,
+     so it blends with the navy header instead of flashing a light gap. */
+  background-color: var(--color-navy-900);
 }
 
 body {
-  @apply bg-slate-100 text-slate-800 antialiased;
+  @apply min-h-dvh bg-slate-100 text-slate-800 antialiased;
 }
 
 /* Hide number spinners on score inputs */

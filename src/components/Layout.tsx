@@ -89,8 +89,9 @@ export function Layout() {
       </aside>
 
       {/* Mobile / tablet header */}
-      <header className="sticky top-0 z-30 bg-navy-900 pt-[env(safe-area-inset-top)] text-white shadow-md lg:hidden">
-        <div className="flex items-center justify-between gap-3 px-4 py-2.5">
+      {/* Fixed (not sticky): pull-to-refresh on phones must never slide it over the page. */}
+      <header className="fixed inset-x-0 top-0 z-30 bg-navy-900 pt-[env(safe-area-inset-top)] text-white shadow-md lg:hidden">
+        <div className="flex h-14 items-center justify-between gap-3 px-4">
           <div className="flex min-w-0 items-center gap-2.5">
             <PaddleLogo className="h-8 w-8 shrink-0" />
             <p className="truncate font-bold">{settings.league_name}</p>
@@ -145,6 +146,9 @@ export function Layout() {
           })}
         </ul>
       </nav>
+
+      {/* Reserves the fixed header's height so content starts below it. */}
+      <div aria-hidden="true" className="h-[calc(3.5rem+env(safe-area-inset-top))] lg:hidden" />
 
       <main className="mx-auto max-w-6xl px-4 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-5 sm:px-6 lg:px-8 lg:py-8">
         <Outlet />
