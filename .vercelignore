@@ -1,0 +1,11 @@
+# Only the frontend source is uploaded to Vercel; it builds from these files.
+# Never upload local secrets, test credentials or the Supabase project folder.
+.env
+.env.*
+!.env.example
+supabase/
+scripts/
+node_modules/
+dist/
+.claude/
+*.log
