@@ -59,7 +59,10 @@ export function PlayersPage() {
 
       {isAdmin && (
         <Card className="mb-4">
-          <CardHeader title="Dodaj igralca" subtitle="Igralci se samodejno prikažejo pri vnosu tekme in na lestvici." />
+          <CardHeader
+            title="Dodaj igralca"
+            subtitle="Vpišite samo ime — igralec ne potrebuje Gmail računa. Rezultate zanj lahko vnese kdorkoli v ligi. Igralec se samodejno prikaže pri vnosu tekme in na lestvici."
+          />
           <form onSubmit={add} className="flex flex-col gap-2 p-4 sm:flex-row sm:items-start sm:px-5">
             <div className="flex-1">
               <label htmlFor="new-player" className="sr-only">

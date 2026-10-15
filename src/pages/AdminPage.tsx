@@ -198,7 +198,7 @@ function InviteCard({
     <Card className="overflow-hidden">
       <CardHeader
         title="Povabi igralce"
-        subtitle={`Dodajte igralčev Gmail naslov in mu pošljite povezavo do aplikacije. Prijavi se z »Nadaljuj z Googlom«.${pendingCount ? ` ${waitingInvites(pendingCount)}` : ''}`}
+        subtitle={`Samo za tiste, ki se bodo prijavljali sami: dodajte Gmail naslov in pošljite povezavo do aplikacije. Igralce brez Gmaila dodate pod Igralci.${pendingCount ? ` ${waitingInvites(pendingCount)}` : ''}`}
       />
       <form onSubmit={invite} noValidate className="flex flex-col gap-2 p-4 sm:flex-row sm:items-start sm:px-5">
         <div className="flex-1">
