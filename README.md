@@ -111,6 +111,17 @@ Or use the CLI: run `npx vercel` once to link the project, `npx vercel env add` 
 - **Grant admin access later:** Administration → **Make admin** next to the account.
 - **Someone leaves:** use **Disable**. Their recorded matches stay.
 
+## Updating the live app
+
+The live site is https://ping-pong-liga.vercel.app. The Vercel project is connected to this GitHub repository:
+
+- **Frontend changes:** push to `main` and Vercel builds and deploys automatically (about a minute). Pushes to other branches get their own preview URL.
+- **Database changes:** add a new file under `supabase/migrations/`, then run `npx supabase db push`. Vercel does not touch the database.
+- **Sign-in settings:** edit `supabase/config.toml` (production values live in the `[remotes.production]` section), check with `npx supabase config diff`, then apply with `npx supabase config push`.
+- **Another administrator:** `npm run invite-admin -- someone@gmail.com`, or use **Administracija** in the app.
+
+Secrets never go in the repo. The database password is in `.env.deploy.local`, the Google client in `supabase/.env`, and the Supabase URL and key in Vercel's environment variables.
+
 ## Local development
 
 You need Docker Desktop.
