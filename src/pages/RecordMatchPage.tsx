@@ -8,7 +8,7 @@ import { fetchPlayers } from '../data/queries'
 import { todayIso } from '../lib/dates'
 import { friendlyError } from '../lib/errors'
 import { supabase } from '../lib/supabase'
-import { validateMatch, type MatchErrors, type MatchFormInput } from '../lib/validation'
+import { MAX_SCORE, validateMatch, type MatchErrors, type MatchFormInput } from '../lib/validation'
 
 interface Saved {
   a: string
@@ -55,13 +55,13 @@ export function RecordMatchPage() {
   const a = Number(form.scoreA)
   const b = Number(form.scoreB)
   const preview =
-    form.playerAId && form.playerBId && form.scoreA !== '' && form.scoreB !== '' && a !== b && a <= 21 && b <= 21
+    form.playerAId && form.playerBId && form.scoreA !== '' && form.scoreB !== '' && a !== b && a <= MAX_SCORE && b <= MAX_SCORE
       ? `${nameOf(a > b ? form.playerAId : form.playerBId)} zmaga ${Math.max(a, b)}–${Math.min(a, b)}`
       : null
 
   return (
     <div className="mx-auto max-w-2xl">
-      <PageHeader title="Vnos tekme" subtitle="Ena igra do 21. Rezultat je celo število od 0 do 21, brez neodločenega izida." />
+      <PageHeader title="Vnos tekme" subtitle={`Rezultat je celo število od 0 do ${MAX_SCORE}, brez neodločenega izida.`} />
 
       {saved && (
         <div className="mb-4 flex items-center gap-3 rounded-xl bg-green-600 p-4 text-white shadow-md" role="status">

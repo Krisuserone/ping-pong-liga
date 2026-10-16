@@ -1,4 +1,4 @@
-export const MAX_SCORE = 21
+export const MAX_SCORE = 99
 
 export interface MatchFormInput {
   playerAId: string

@@ -15,7 +15,7 @@ A private web app (in Slovenian) for a small group (about 10 people) to record t
 | Leaderboard | **Overall** table (rank, P, W, L, points scored, points conceded, difference; sort and filter) and **Match day** view: one day’s standings with the day’s winner, ‹ › to step between match days | — |
 | Administration | — | Invite players by Gmail address, grant or revoke admin, disable accounts, league name |
 
-**Rules enforced in the database (not only in the browser):** scores are whole numbers from 0 to 21, there are no ties, the two players must be different, the date can't be in the future, and new games need active players. The recorder is always the signed-in user. Statistics are never stored. The `player_stats` view calculates them from the matches, so editing or deleting a match changes the leaderboard straight away. Open screens refresh through Supabase Realtime.
+**Rules enforced in the database (not only in the browser):** scores are whole numbers from 0 to 99, there are no ties, the two players must be different, the date can't be in the future, and new games need active players. The recorder is always the signed-in user. Statistics are never stored. The `player_stats` view calculates them from the matches, so editing or deleting a match changes the leaderboard straight away. Open screens refresh through Supabase Realtime.
 
 **Ranking:** wins, then point difference, then points scored, all highest first. Players level on all three share a rank, shown as "T2". Inactive players keep their history but are not ranked.
 

@@ -11,12 +11,13 @@ describe('validateMatch', () => {
     expect(value).toEqual({ player_a_id: 'a', player_b_id: 'b', player_a_score: 21, player_b_score: 15, match_date: TODAY })
   })
 
-  it('accepts boundary scores 0 and 21', () => {
+  it('accepts boundary scores 0, 21 and 99', () => {
+    expect(validateMatch({ ...base, scoreA: '99', scoreB: '97' }, TODAY).value).toMatchObject({ player_a_score: 99, player_b_score: 97 })
     expect(validateMatch({ ...base, scoreA: '0', scoreB: '21' }, TODAY).value).toBeDefined()
   })
 
   it.each([
-    ['22', 'Rezultat ne sme biti višji od 21.'],
+    ['100', 'Rezultat ne sme biti višji od 99.'],
     ['-1', 'Rezultat mora biti celo število.'],
     ['10.5', 'Rezultat mora biti celo število.'],
     ['abc', 'Rezultat mora biti celo število.'],

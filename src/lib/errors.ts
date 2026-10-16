@@ -8,8 +8,8 @@ interface MaybePgError {
 const CONSTRAINT_MESSAGES: Record<string, string> = {
   players_name_unique: 'Igralec s tem imenom že obstaja.',
   matches_different_players: 'Igralec ne more igrati sam proti sebi.',
-  matches_score_a_range: 'Rezultat mora biti celo število med 0 in 21.',
-  matches_score_b_range: 'Rezultat mora biti celo število med 0 in 21.',
+  matches_score_a_range: 'Rezultat mora biti celo število med 0 in 99.',
+  matches_score_b_range: 'Rezultat mora biti celo število med 0 in 99.',
   matches_no_tie: 'Rezultat ne sme biti neodločen — en igralec mora zmagati.',
   matches_date_not_future: 'Datum tekme ne sme biti v prihodnosti.',
   matches_player_a_id_fkey: 'Ta igralec ima vnesene tekme.',

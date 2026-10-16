@@ -67,7 +67,7 @@ select is((select match_date from public.matches limit 1), current_date, 'match 
 select throws_ok($$ insert into public.matches (player_a_id, player_b_id, player_a_score, player_b_score)
   values ('10000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001', 21, 3) $$, '23514', null, 'a player cannot play themselves');
 select throws_ok($$ insert into public.matches (player_a_id, player_b_id, player_a_score, player_b_score)
-  values ('10000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000002', 22, 3) $$, '23514', null, 'scores above 21 are rejected');
+  values ('10000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000002', 100, 3) $$, '23514', null, 'scores above 99 are rejected');
 select throws_ok($$ insert into public.matches (player_a_id, player_b_id, player_a_score, player_b_score)
   values ('10000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000002', -1, 3) $$, '23514', null, 'negative scores are rejected');
 select throws_ok($$ insert into public.matches (player_a_id, player_b_id, player_a_score, player_b_score)
