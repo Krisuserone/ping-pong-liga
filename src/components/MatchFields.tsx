@@ -2,6 +2,9 @@ import type { Player } from '../lib/types'
 import { MAX_SCORE, type MatchErrors, type MatchFormInput } from '../lib/validation'
 import { Field, inputClass } from './ui'
 
+/** Score fields accept at most this many digits ("99" → 2). */
+const SCORE_DIGITS = String(MAX_SCORE).length
+
 /**
  * The player/score/date inputs shared by "Record Match" and the admin edit dialog.
  * Laid out as two "sides of the table" so it reads like a scoreboard.
@@ -61,16 +64,17 @@ export function MatchFields({
             </label>
             <input
               id={`${idPrefix}-s${which}`}
-              type="number"
+              // Text (not number) so maxLength works; digits only, at most two (0–99).
+              type="text"
               inputMode="numeric"
-              min={0}
-              max={MAX_SCORE}
-              step={1}
+              pattern="[0-9]*"
+              autoComplete="off"
+              maxLength={SCORE_DIGITS}
               placeholder="0"
               className={`${inputClass} text-center text-lg font-bold tabular-nums`}
               value={value[scoreKey]}
               aria-invalid={Boolean(sErr)}
-              onChange={(e) => set({ [scoreKey]: e.target.value })}
+              onChange={(e) => set({ [scoreKey]: e.target.value.replace(/\D/g, '').slice(0, SCORE_DIGITS) })}
             />
           </div>
         </div>
