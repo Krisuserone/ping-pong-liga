@@ -5,8 +5,7 @@ import { useToast } from '../components/Toast'
 import { Alert, Badge, Button, Card, CardHeader, EmptyState, Field, inputClass, Loading, Modal, PageHeader } from '../components/ui'
 import { useLeagueQuery, useLiveData } from '../data/LiveData'
 import { fetchStats } from '../data/queries'
-import { formatDay } from '../lib/dates'
-import { activePlayers, games, inactivePlayers } from '../lib/sl'
+import { activePlayers, inactivePlayers } from '../lib/sl'
 import { friendlyError } from '../lib/errors'
 import { supabase } from '../lib/supabase'
 import type { PlayerStats } from '../lib/types'
@@ -131,17 +130,12 @@ export function PlayersPage() {
                 >
                   {p.name.slice(0, 1).toUpperCase()}
                 </span>
-                <div className="min-w-0 flex-1">
-                  <p className="flex items-center gap-2 font-semibold text-navy-900">
-                    <span className="truncate">{p.name}</span>
-                    {!p.active && <Badge>Neaktiven</Badge>}
-                    {p.rank != null && p.rank <= 3 && p.games_played > 0 && <Badge color="green">#{p.rank}</Badge>}
-                  </p>
-                  <p className="text-xs text-slate-500">
-                    {games(p.games_played)} · {p.wins} Z {p.losses} P · od {formatDay(p.created_at)}
-                  </p>
-                </div>
-                <div className="flex gap-2">
+                {/* Only the name: this list is for finding and managing players; stats live on the leaderboard. */}
+                <p className="flex min-w-0 flex-1 flex-wrap items-center gap-2 text-base font-semibold text-navy-900">
+                  <span className="break-words">{p.name}</span>
+                  {!p.active && <Badge>Neaktiven</Badge>}
+                </p>
+                <div className="flex w-full justify-end gap-2 sm:w-auto">
                   <Link to={`/history?player=${p.player_id}`} className="inline-flex min-h-10 items-center rounded-lg px-3 text-sm font-semibold text-navy-700 hover:bg-slate-100 sm:min-h-0 sm:px-2.5 sm:py-1.5">
                     Tekme
                   </Link>
